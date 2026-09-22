@@ -67,10 +67,26 @@ function setCloudUI(state,title,text){
   if(st)st.textContent=title||"السحابة";
   if(tx)tx.textContent=text||"";
 }
+const DEFAULT_FIREBASE_CONFIG={
+  apiKey:"AIzaSyClsXgHj6-7kNoxKoRkaqXJVLjfzX31tpw",
+  authDomain:"acrow-machine-guide.firebaseapp.com",
+  databaseURL:"https://acrow-machine-guide-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId:"acrow-machine-guide",
+  storageBucket:"acrow-machine-guide.firebasestorage.app",
+  messagingSenderId:"968582995602",
+  appId:"1:968582995602:web:0da1946187b4275cc6504b"
+};
 function getSavedFirebaseConfig(){
-  try{return JSON.parse(localStorage.getItem(CLOUD_KEY)||"null")}catch(e){return null}
+  try{
+    const saved=JSON.parse(localStorage.getItem(CLOUD_KEY)||"null");
+    return saved&&saved.apiKey&&saved.projectId&&saved.appId
+      ? {...DEFAULT_FIREBASE_CONFIG,...saved}
+      : DEFAULT_FIREBASE_CONFIG;
+  }catch(e){return DEFAULT_FIREBASE_CONFIG}
 }
-function saveFirebaseConfig(cfg){localStorage.setItem(CLOUD_KEY,JSON.stringify(cfg))}
+function saveFirebaseConfig(cfg){
+  localStorage.setItem(CLOUD_KEY,JSON.stringify({...DEFAULT_FIREBASE_CONFIG,...cfg}))
+}
 async function loadFirebaseModules(){
   const appMod=await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js");
   const authMod=await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js");
@@ -81,7 +97,10 @@ async function connectCloud(cfg,announce=true){
   setCloudUI("busy","جاري الاتصال بالسحابة…","يتم تسجيل الدخول والمزامنة.");
   try{
     const M=await loadFirebaseModules();
-    const app=M.initializeApp(cfg,"ACROWMachineGuide");
+    const app=(()=>{
+      try{return M.getApp("ACROWMachineGuide")}
+      catch(e){return M.initializeApp({...DEFAULT_FIREBASE_CONFIG,...cfg},"ACROWMachineGuide")}
+    })();
     const auth=M.getAuth(app);
     const cred=await M.signInAnonymously(auth);
     const r=M.ref(M.getDatabase(app),"acrowMachineGuide");
@@ -170,7 +189,8 @@ function closeCloudModal(){ $("cloudModal").classList.add("hidden") }
 async function connectFromUI(){
   let cfg;
   try{cfg=JSON.parse($("firebaseConfigInput").value.trim())}catch(e){alert("الصق Firebase Web Config بصيغة JSON صحيحة.");return}
-  if(!cfg.apiKey||!cfg.projectId||!cfg.appId){alert("الـ Firebase Config ناقص. تأكد من apiKey و projectId و appId.");return}
+  cfg={...DEFAULT_FIREBASE_CONFIG,...cfg};
+  if(!cfg.apiKey||!cfg.projectId||!cfg.appId||!cfg.databaseURL){alert("الـ Firebase Config ناقص. تأكد من إعدادات Firebase.");return}
   await connectCloud(cfg,true);
 }
 function disconnectCloud(){
