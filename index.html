@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACROW Machine Guide V4</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="acrow-app-locked">
+<div id="loginScreen" class="acrow-login-screen">
+  <div class="acrow-shape acrow-shape-right"></div>
+  <div class="acrow-shape acrow-shape-left"></div>
+  <div class="acrow-login-card">
+    <div class="acrow-card-top"></div>
+    <img class="acrow-logo" src="data:image/png;base64,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" alt="ACROW">
+    <div class="acrow-brand-title"><span>ACROW</span> Machine Guide</div>
+    <h2>دليل تشغيل وحل أعطال الماكينات</h2>
+    <p class="acrow-subtitle">الوصول السريع للمعلومات .. تقليل وقت التوقف .. زيادة الإنتاجية</p>
+
+    <div class="acrow-features">
+      <div class="acrow-feature">
+        <div class="acrow-feature-icon">⌕</div>
+        <strong>بحث سريع</strong>
+        <small>باسم الزر أو العطل</small>
+      </div>
+      <div class="acrow-feature">
+        <div class="acrow-feature-icon qr">▦</div>
+        <strong>QR Scan</strong>
+        <small>الوصول المباشر للزر</small>
+      </div>
+      <div class="acrow-feature">
+        <div class="acrow-feature-icon">⚙</div>
+        <strong>حلول الأعطال</strong>
+        <small>بخطوات واضحة</small>
+      </div>
+    </div>
+
+    <button id="enterAppBtn" class="acrow-enter-btn">
+      <span>دخول إلى النظام</span>
+      <b>›</b>
+    </button>
+
+    <div class="acrow-footer">
+      <strong>🏭 ACROW Factory 5</strong>
+      <i></i>
+      <span>دليل المعرفة والتشغيل</span>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div>
+    <h1>ACROW Machine Guide</h1>
+    <p>دليل الماكينة وحل الأعطال — سريع وبسيط</p>
+  </div>
+  <div class="top-actions">
+    <button id="backupBtn" class="btn">💾 نسخة احتياطية</button>
+    <label class="btn file-btn">↩️ استعادة
+      <input id="restoreInput" type="file" accept=".json" hidden>
+    </label>
+    <button id="adminBtn" class="btn primary">⚙️ إدارة البيانات</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="badge">FAST LOOKUP</span>
+      <h2>لما الماكينة تعطل… أوصل للحل بسرعة</h2>
+      <p>ابحث باسم الزر أو العطل أو رقم الـ Fault، أو استخدم QR للوصول للمعلومة مباشرة.</p>
+      <div class="search-row">
+        <input id="globalSearch" autocomplete="off" placeholder="🔎 اكتب اسم الزر أو العطل أو Fault أو رقم الزر...">
+        <button id="scanBtn" class="btn primary">📷 Scan QR</button>
+        <button id="clearSearch" class="btn">مسح</button>
+      </div>
+      <div id="searchStatus" class="search-status">اكتب كلمة للبحث…</div>
+    </div>
+    <div class="machine-art"><div class="gear">⚙</div><div class="gear small">⚙</div><div class="machine-label">ACROW</div></div>
+  </section>
+
+  <section class="stats">
+    <div><b id="statMachines">0</b><span>ماكينات</span></div>
+    <div><b id="statButtons">0</b><span>أزرار</span></div>
+    <div><b id="statFaults">0</b><span>أعطال</span></div>
+    <div><b id="statImages">0</b><span>صور</span></div>
+  </section>
+
+  <section id="resultsSection" class="panel">
+    <div class="panel-head">
+      <div><h3>🔎 النتائج</h3><span id="resultCount"></span></div>
+      <div class="view-tools">
+        <button class="filter active" data-filter="all">الكل</button>
+        <button class="filter" data-filter="button">الأزرار</button>
+        <button class="filter" data-filter="fault">الأعطال</button>
+      </div>
+    </div>
+    <div id="results" class="results empty">
+      <div class="empty-icon">🔍</div>
+      <h3>ابدأ بالبحث</h3>
+      <p>اكتب اسم الزر أو اسم/رقم العطل، وستظهر النتائج هنا.</p>
+    </div>
+  </section>
+
+  <section id="detailSection" class="panel hidden">
+    <div class="panel-head">
+      <h3>📌 التفاصيل</h3><button id="closeDetail" class="icon-btn">✕</button>
+    </div>
+    <div id="detail"></div>
+  </section>
+
+  <section id="adminSection" class="panel hidden">
+    <div class="panel-head">
+      <div><h3>⚙️ إدارة البيانات</h3><p>إضافة وتعديل بدون إعادة تحميل الصفحة.</p></div>
+      <button id="closeAdmin" class="icon-btn">✕</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="buttonForm">🔘 إضافة زر</button>
+      <button class="admin-tab" data-tab="faultForm">🔧 إضافة عطل</button>
+      <button class="admin-tab" data-tab="manage">📋 إدارة البيانات</button>
+    </div>
+
+    <div id="buttonForm" class="admin-tab-content">
+      <form id="buttonFormEl" class="form-grid">
+        <input type="hidden" id="buttonId">
+        <label>اسم الماكينة<input id="bMachine" required placeholder="مثال: ماكينة 999"></label>
+        <label>الشاشة / المنطقة<input id="bScreen" placeholder="مثال: Main Screen"></label>
+        <label>اسم الزر<input id="bName" required placeholder="مثال: START"></label>
+        <label>رقم الزر<input id="bNumber" placeholder="مثال: 12"></label>
+        <label>كود QR / Barcode<input id="bCode" placeholder="مثال: M999-START"></label>
+        <label class="full">وصف ووظيفة الزر<textarea id="bDesc" rows="3" placeholder="وظيفة الزر وطريقة استخدامه..."></textarea></label>
+        <label class="full">صورة الزر<input id="bImage" type="file" accept="image/*"></label>
+        <div class="image-preview full" id="bImagePreview"></div>
+        <div class="form-actions full">
+          <button class="btn primary" type="submit">💾 حفظ الزر</button>
+          <button class="btn" type="button" id="resetButtonForm">➕ جديد</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="faultForm" class="admin-tab-content hidden">
+      <form id="faultFormEl" class="form-grid">
+        <input type="hidden" id="faultId">
+        <label>اختار الزر المرتبط<select id="fButton" required></select></label>
+        <label>رقم / كود Fault<input id="fCode" required placeholder="مثال: F102"></label>
+        <label class="full">اسم العطل<input id="fName" required placeholder="مثال: Motor Overload"></label>
+        <label class="full">وصف المشكلة<textarea id="fDesc" rows="3" placeholder="ماذا يظهر على الشاشة أو ماذا يحدث؟"></textarea></label>
+        <label class="full">طريقة الحل<textarea id="fSolution" rows="7" placeholder="اكتب خطوات الحل كل خطوة في سطر مستقل..."></textarea></label>
+        <label class="full">صورة شرح العطل / الحل<input id="fImage" type="file" accept="image/*"></label>
+        <div class="image-preview full" id="fImagePreview"></div>
+        <div class="form-actions full">
+          <button class="btn primary" type="submit">💾 حفظ العطل</button>
+          <button class="btn" type="button" id="resetFaultForm">➕ جديد</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="manage" class="admin-tab-content hidden">
+      <div class="manage-search"><input id="manageSearch" placeholder="🔎 ابحث داخل بيانات الإدارة..."></div>
+      <div id="manageList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<div id="qrModal" class="modal hidden">
+  <div class="modal-card">
+    <button class="icon-btn modal-close" data-close="qrModal">✕</button>
+    <h3>📷 مسح QR</h3>
+    <p>وجّه الكاميرا إلى QR الخاص بالزر.</p>
+    <div id="reader"></div>
+    <div id="scanResult" class="scan-result"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/html5-qrcode" defer></script>
+<script src="script.js"></script>
+</body>
+</html>
