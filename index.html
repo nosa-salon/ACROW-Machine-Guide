@@ -35,7 +35,14 @@
       </div>
     </div>
 
-    <button id="enterAppBtn" class="acrow-enter-btn">
+    <div class="acrow-password-box">
+      <label for="acrowPassword">🔐 كلمة مرور الدخول</label>
+      <input id="acrowPassword" type="password" inputmode="numeric" autocomplete="off"
+             maxlength="6" placeholder="أدخل كلمة المرور">
+      <div id="acrowPasswordError" class="acrow-password-error" aria-live="polite"></div>
+    </div>
+
+    <button id="enterAppBtn" class="acrow-enter-btn" type="button">
       <span>دخول إلى النظام</span>
       <b>›</b>
     </button>
@@ -54,7 +61,7 @@
     <p>دليل الماكينة وحل الأعطال — سريع وبسيط</p>
   </div>
   <div class="top-actions">
-    <button id="backupBtn" class="btn">💾 نسخة احتياطية</button>
+    <button id="backupBtn" class="btn">💾 نسخة احتياطية</button>\n    <button id="cloudBtn" class="btn cloud-btn">☁️ السحابة <span id="cloudDot" class="cloud-dot off"></span></button>
     <label class="btn file-btn">↩️ استعادة
       <input id="restoreInput" type="file" accept=".json" hidden>
     </label>
@@ -175,5 +182,64 @@
 
 <script src="https://unpkg.com/html5-qrcode" defer></script>
 <script src="script.js"></script>
+
+<div id="cloudModal" class="modal hidden">
+  <div class="modal-box cloud-box">
+    <div class="modal-head">
+      <div>
+        <h3>☁️ قاعدة البيانات السحابية</h3>
+        <p class="muted">مزامنة فورية بين الكمبيوتر والموبايل وكل جهاز فاتح المشروع.</p>
+      </div>
+      <button class="icon-btn" data-close="cloudModal">✕</button>
+    </div>
+
+    <div class="cloud-status-card">
+      <div>
+        <b id="cloudStatusTitle">السحابة غير مفعلة</b>
+        <small id="cloudStatusText">ضع Firebase Web Config مرة واحدة لتفعيل المزامنة.</small>
+      </div>
+      <span id="cloudStatusBadge" class="cloud-badge off">غير متصل</span>
+    </div>
+
+    <div class="cloud-help">
+      <b>المطلوب من Firebase:</b>
+      <ol>
+        <li>إنشاء <strong>Realtime Database</strong>.</li>
+        <li>تفعيل <strong>Anonymous Authentication</strong>.</li>
+        <li>نسخ <strong>Web App Config</strong> ولصقه هنا.</li>
+      </ol>
+      <p>بعد الربط: أي زر أو عطل أو تعديل تحفظه من أي جهاز يصل للأجهزة الأخرى فورًا.</p>
+    </div>
+
+    <label class="field">
+      <span>Firebase Web Config (JSON)</span>
+      <textarea id="firebaseConfigInput" rows="9" placeholder='{
+  "apiKey": "...",
+  "authDomain": "...",
+  "databaseURL": "https://....firebasedatabase.app",
+  "projectId": "...",
+  "storageBucket": "...",
+  "messagingSenderId": "...",
+  "appId": "..."
+}'></textarea>
+    </label>
+
+    <div class="cloud-actions">
+      <button id="cloudConnectBtn" class="btn primary">☁️ اتصال ومزامنة الآن</button>
+      <button id="cloudDisconnectBtn" class="btn danger-outline">فصل السحابة من هذا الجهاز</button>
+    </div>
+
+    <div class="cloud-rules">
+      <b>Security Rules المقترحة لـ Realtime Database:</b>
+      <pre>{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}</pre>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
