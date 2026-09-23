@@ -46,3 +46,80 @@ h1,h2,h3,p{margin-top:0}.topbar h1{margin-bottom:5px;font-size:25px}.topbar p{co
 .cloud-btn{display:inline-flex;align-items:center;gap:7px}.cloud-dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:#9aa3b2;box-shadow:0 0 0 3px #9aa3b21a}.cloud-dot.on{background:#1eaf6e;box-shadow:0 0 0 3px #1eaf6e22}.cloud-dot.busy{background:#e39a16;box-shadow:0 0 0 3px #e39a1622}.cloud-dot.off{background:#9aa3b2}
 .cloud-box{width:min(720px,94vw)}.cloud-status-card{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 16px;border:1px solid #dce1ea;border-radius:13px;background:#fafbfe;margin-bottom:15px}.cloud-status-card b{display:block;color:#252a64}.cloud-status-card small{display:block;color:#8790a4;margin-top:4px}.cloud-badge{padding:6px 10px;border-radius:20px;font-size:11px;white-space:nowrap}.cloud-badge.off{background:#eef0f4;color:#687184}.cloud-badge.on{background:#e7f8ef;color:#168050}.cloud-badge.busy{background:#fff5df;color:#9a6910}.cloud-help{background:#f7f8fc;border:1px solid #e1e5ed;border-radius:12px;padding:13px 16px;margin-bottom:15px;color:#606a80;font-size:12px;line-height:1.8}.cloud-help ol{margin:6px 18px 5px}.cloud-help strong{color:#292170}.cloud-help p{margin:4px 0 0}.cloud-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.danger-outline{border:1px solid #d64a55!important;background:#fff!important;color:#b72e39!important}.cloud-rules{margin-top:16px;border-top:1px solid #e2e6ed;padding-top:14px}.cloud-rules b{font-size:12px;color:#30385e}.cloud-rules pre{direction:ltr;text-align:left;white-space:pre-wrap;background:#111827;color:#e5e7eb;padding:12px;border-radius:10px;font-size:11px;overflow:auto}
 @media(max-width:650px){.cloud-status-card{align-items:flex-start;flex-direction:column}.cloud-actions .btn{width:100%}}
+
+/* V4.2 additions: print + QR/barcode, without changing existing design */
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 20px}
+.qr-card{text-align:center}.qr-visual{min-height:190px;display:grid;place-items:center;margin:12px auto}.qr-visual img{display:block;margin:auto}.barcode-visual{min-height:95px;display:flex;justify-content:center;align-items:center;overflow:auto}.barcode-visual svg{max-width:100%;height:auto}.qr-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:15px}
+@media(max-width:650px){.detail-actions .btn,.qr-actions .btn{width:100%}}
+
+.department-badge{
+  display:inline-block;
+  margin:4px 0;
+  padding:4px 9px;
+  border-radius:12px;
+  background:#eef6ff;
+  color:#1557a6;
+  font-size:12px;
+  font-weight:700;
+}
+#buttonDepartment,#departmentFilter{
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* ===== V4.4: editable stages + ACROW logo in gear ===== */
+.stage-filter-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.stage-filter-row label{font-weight:700}
+#stageFilter,#bStage,#newStageName{
+  min-height:42px;
+}
+.stage-filter-row select{
+  min-width:240px;
+}
+.stage-manager{
+  padding:4px 0;
+}
+.stage-add-row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin:15px 0;
+  flex-wrap:wrap;
+}
+.stage-add-row input{
+  flex:1 1 320px;
+}
+.stage-list{
+  display:grid;
+  gap:8px;
+}
+.stage-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:11px 13px;
+  border:1px solid rgba(120,160,220,.25);
+  border-radius:12px;
+  background:rgba(20,35,65,.35);
+}
+.logo-gear{
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.logo-gear img{
+  width:76%;
+  height:76%;
+  object-fit:contain;
+  display:block;
+  mix-blend-mode:multiply;
+  border-radius:50%;
+}
