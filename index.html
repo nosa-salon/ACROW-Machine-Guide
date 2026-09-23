@@ -81,8 +81,14 @@
         <button id="clearSearch" class="btn">مسح</button>
       </div>
       <div id="searchStatus" class="search-status">اكتب كلمة للبحث…</div>
+      <div class="stage-filter-row">
+        <label for="stageFilter">المرحلة</label>
+        <select id="stageFilter" onchange="doSearch()">
+          <option value="">كل المراحل</option>
+        </select>
+      </div>
     </div>
-    <div class="machine-art"><div class="gear">⚙</div><div class="gear small">⚙</div><div class="machine-label">ACROW</div></div>
+    <div class="machine-art"><div class="gear logo-gear"><img src="acrow-logo.png" alt="ACROW"></div><div class="gear small">⚙</div></div>
   </section>
 
   <section class="stats">
@@ -124,6 +130,7 @@
       <button class="admin-tab active" data-tab="buttonForm">🔘 إضافة زر</button>
       <button class="admin-tab" data-tab="faultForm">🔧 إضافة عطل</button>
       <button class="admin-tab" data-tab="manage">📋 إدارة البيانات</button>
+      <button class="admin-tab" data-tab="stages">🧩 إدارة المراحل</button>
     </div>
 
     <div id="buttonForm" class="admin-tab-content">
@@ -131,6 +138,11 @@
         <input type="hidden" id="buttonId">
         <label>اسم الماكينة<input id="bMachine" required placeholder="مثال: ماكينة 999"></label>
         <label>الشاشة / المنطقة<input id="bScreen" placeholder="مثال: Main Screen"></label>
+        <label>المرحلة
+          <select id="bStage">
+            <option value="">— اختر المرحلة —</option>
+          </select>
+        </label>
         <label>اسم الزر<input id="bName" required placeholder="مثال: START"></label>
         <label>رقم الزر<input id="bNumber" placeholder="مثال: 12"></label>
         <label>كود QR / Barcode<input id="bCode" placeholder="مثال: M999-START"></label>
@@ -161,6 +173,18 @@
       </form>
     </div>
 
+    <div id="stages" class="admin-tab-content hidden">
+      <div class="stage-manager">
+        <h3>🧩 إدارة المراحل</h3>
+        <p class="muted">أضف أي مرحلة جديدة يدويًا، وستظهر تلقائيًا عند إضافة زر، وفي فلتر البحث.</p>
+        <div class="stage-add-row">
+          <input id="newStageName" placeholder="مثال: بداية التشغيل — طرق التشغيل — صيانة جزء من الماكينة">
+          <button id="addStageBtn" class="btn primary" type="button">➕ إضافة المرحلة</button>
+        </div>
+        <div id="stageList" class="stage-list"></div>
+      </div>
+    </div>
+
     <div id="manage" class="admin-tab-content hidden">
       <div class="manage-search"><input id="manageSearch" placeholder="🔎 ابحث داخل بيانات الإدارة..."></div>
       <div id="manageList"></div>
@@ -171,15 +195,23 @@
 <div id="toast" class="toast"></div>
 
 <div id="qrModal" class="modal hidden">
-  <div class="modal-card">
+  <div class="modal-card qr-card">
     <button class="icon-btn modal-close" data-close="qrModal">✕</button>
-    <h3>📷 مسح QR</h3>
-    <p>وجّه الكاميرا إلى QR الخاص بالزر.</p>
+    <h3 id="qrModalTitle">📷 QR / Barcode</h3>
+    <p id="qrModalHint">يمكنك طباعة الكود ولصقه على الماكينة أو العطل.</p>
+    <div id="qrVisual" class="qr-visual"></div>
+    <div id="barcodeVisual" class="barcode-visual"></div>
     <div id="reader"></div>
     <div id="scanResult" class="scan-result"></div>
+    <div class="qr-actions">
+      <button id="printQrBtn" class="btn primary" type="button">🖨️ طباعة الكود</button>
+      <button id="closeQrBtn" class="btn" type="button">إغلاق</button>
+    </div>
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js" defer></script>
 <script src="https://unpkg.com/html5-qrcode" defer></script>
 <script src="script.js"></script>
 
